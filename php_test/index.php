@@ -55,7 +55,7 @@
       <input type="hidden" value="<?php $row['id'] ?>">
       <div class="mb-3">
         <label class="form-label" for="name">product name</label>
-        <input class="form-control" id="name" type="text"  name="name" />
+        <input class="form-control" id="name" type="text"  name="name" placeholder="Enter product name" />
       </div>
 
 
@@ -75,18 +75,19 @@
   if ($result = $mysqli->query($sql)) {
     if ($result->num_rows > 0) {
     
-    echo "<table  class='table table-striped'  border='3px solid black' >";
+    echo "<table  class='table table-bordered table-sm table-striped'  >";
        echo "<tr>";
-       echo "<th>numero de produit</th>";
-       echo "<th>nom de produit</th>";
-       echo "<th>Action</th>";
+       echo "<th class='text-center'>numero de produit</th>";
+       echo "<th class='text-center'>nom de produit</th>";
+       echo "<th class='text-center'>Action</th>";
        echo "</tr>";
       while ($row = $result->fetch_array()) {
       ?>
       <tr >
-        <td border='1px'> <?php echo $row['id'];  ?>  </td>
-        <td border='1px'> <?php echo$row['product_name'];?> </td>
-        <td border='1px'><a href=edit.php?id=<?php echo $row['id'];?>> edit</a> </td>
+        <td class='text-center'> <?php echo $row['id'];  ?>  </td>
+        <td class='text-center'> <?php echo$row['product_name'];?> </td>
+        <td class='text-center'><a href=edit.php?id=<?php echo $row['id'] ;?> class="btn btn-primary"> Edit</a>&nbsp;<a href=index.php?id=<?php echo $row['id'] ;?> class="btn btn-danger"> Delete</a> </td>
+        <!-- <td border='1px'><a href=edit.php?id=<?php echo $row['id'] ;?> class="btn btn-danger"> Delete</a></td> -->
         </tr>
         <?php
       } 
@@ -102,11 +103,18 @@
 
   
   
+  
+  if (isset($_GET["id"])) {
+    $id= $_GET["id"];
+    echo "<span>ok</span>"  ;
+    $sqlDelete = "DELETE FROM product WHERE id ='$id' " ;
+    mysqli_query($mysqli,$sqlDelete);
+  }
+ 
+    
 
-  $update = "UPDATE product SET product_name='cartable' WHERE id= 14 ";
-  // mysqli_query($mysqli,$update);
-  $sqlDelete = "DELETE FROM product WHERE product_name ='' ";
-  // mysqli_query($mysqli,$sqlDelete);
+  
+
 
   // $mysqli->close();
   ?>

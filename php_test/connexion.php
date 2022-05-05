@@ -3,7 +3,7 @@
  define("username", "root");
  define("password", "");
  define("database", "boutique");
- $mysqli = new mysqli(HOST, username, password, database);
+  $mysqli = new mysqli(HOST, username, password, database);
 
 
  if ($mysqli->connect_errno) {

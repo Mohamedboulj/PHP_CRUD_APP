@@ -46,6 +46,7 @@ require_once(
 <?php
  if(isset($_POST["name"]) && isset($_POST["id"]) ){
       $name = $_POST["name"];
+      // $id = $_POST["id"];
       
       $update = "UPDATE product SET product_name='$name' WHERE id=".$_POST["id"];
       echo $update;
